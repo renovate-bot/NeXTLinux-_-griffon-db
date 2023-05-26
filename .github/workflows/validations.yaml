@@ -89,7 +89,7 @@ jobs:
       - name: Read supported schema versions
         id: read-schema-versions
         run: |
-          content=`cat grype-schema-version-mapping.json | jq -c 'keys'`
+          content=`cat griffon-schema-version-mapping.json | jq -c 'keys'`
           echo "schema-versions=$content" >> $GITHUB_OUTPUT
 
   # Note: changing this job name requires making the same update in the .github/workflows/release.yaml pipeline
@@ -132,12 +132,12 @@ jobs:
       - name: Build DB
         run: |
           cd test/acceptance && \
-          poetry run python grype-ingest.py generate --schema-version ${{ matrix.schema-version }}
+          poetry run python griffon-ingest.py generate --schema-version ${{ matrix.schema-version }}
 
       - name: Test DB
         run: |
           cd test/acceptance && \
-          poetry run python grype-ingest.py test --schema-version ${{ matrix.schema-version }}
+          poetry run python griffon-ingest.py test --schema-version ${{ matrix.schema-version }}
 
   Cli-Linux:
     # Note: changing this job name requires making the same update in the .github/workflows/release.yaml pipeline
